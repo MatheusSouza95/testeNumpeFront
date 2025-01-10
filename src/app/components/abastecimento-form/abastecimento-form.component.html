@@ -1,0 +1,36 @@
+<div class="abastecimento-form-container">
+    <div class="abastecimento-form">
+      <h2>Adicionar Abastecimento</h2>
+    
+      <form (ngSubmit)="onSubmit(abastecimentoForm)" #abastecimentoForm="ngForm">
+        <div class="form-row">
+          <label for="placa">Placa:</label>
+          <input matInput type="text" id="placa" name="placa" ngModel required placeholder="Digite a placa" />
+        </div>
+    
+        <div class="form-row">
+          <label for="quilometragem">Quilometragem:</label>
+          <input matInput type="number" id="quilometragem" name="quilometragem" ngModel required placeholder="Digite a quilometragem" />
+        </div>
+    
+        <div class="form-row">
+          <label for="vlTotal">Valor Total:</label>
+          <input matInput type="number" id="vlTotal" name="vlTotal" ngModel required placeholder="Digite o valor total" />
+        </div>
+    
+        <div class="form-row">
+          <label for="dhAbastecimento">Data e Hora:</label>
+          <input matInput type="datetime-local" id="dhAbastecimento" name="dhAbastecimento" ngModel required />
+        </div>
+    
+        <div class="form-actions">
+            <button type="button" (click)="goBack()" mat-raised-button color="accent">Voltar</button>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="!abastecimentoForm.form.valid">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

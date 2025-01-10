@@ -1,0 +1,59 @@
+<div class="abastecimento-lista">
+    <h2>Lista de Abastecimentos</h2>
+  
+    <div class="toolbar">
+      <div class="filter-container">
+        <label for="placaFilter">Filtrar por Placa:</label>
+        <input type="text" id="placaFilter" [(ngModel)]="placaFilter" (ngModelChange)="applyFilter()" placeholder="Digite a placa" />
+      </div>
+      <button mat-stroked-button color="primary" [routerLink]="'/abastecimento-form'" class="add-button">
+        <mat-icon>add</mat-icon> Adicionar Abastecimento
+      </button>
+    </div>
+  
+    <table mat-table [dataSource]="filteredAbastecimentos" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let abastecimento">{{ abastecimento.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let abastecimento">
+          <button mat-icon-button color="warn" (click)="onDelete(abastecimento.id)" class="delete-button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="dhAbastecimento">
+        <th mat-header-cell *matHeaderCellDef>Data e Hora</th>
+        <td mat-cell *matCellDef="let abastecimento">{{ abastecimento.dhAbastecimento }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="placa">
+        <th mat-header-cell *matHeaderCellDef>Placa</th>
+        <td mat-cell *matCellDef="let abastecimento">{{ abastecimento.placa }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="quilometragem">
+        <th mat-header-cell *matHeaderCellDef>Quilometragem</th>
+        <td mat-cell *matCellDef="let abastecimento">{{ abastecimento.quilometragem }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="vlTotal">
+        <th mat-header-cell *matHeaderCellDef>Valor Total</th>
+        <td mat-cell *matCellDef="let abastecimento">{{ abastecimento.vlTotal | currency }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [length]="totalRecords"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5, 10, 15]"
+                   (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  
